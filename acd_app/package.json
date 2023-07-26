@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "name": "armored-core-data-app",
+  "description": "App to push data to Armored Core Build Site database",
+  "version": "1.0.0",
+  "author": "Brenden Cheng <brendenkcheng@gmail.com>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron": "^21.3.3",
+    "electron-builder": "^23.6.0",
+    "next": "^12.3.4",
+    "nextron": "^8.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrendenDev/Armored-Core-Build-App.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrendenDev/Armored-Core-Build-App/issues"
+  },
+  "homepage": "https://github.com/BrendenDev/Armored-Core-Build-App#readme"
+}
