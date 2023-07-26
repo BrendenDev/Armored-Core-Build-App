@@ -1,0 +1,39 @@
+.body {
+    display:flex;
+    flex-direction: column;
+}
+
+.data-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data-label {
+    color:blue;
+    padding: 5px;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+}
+
+.data-label:hover {
+    cursor: pointer;
+}
+
+.data-label-uploaded {
+    background-color:red;
+}
+
+.data-input {
+    display: none;
+}
+
+.data-submit {
+    margin-top: 10px;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+}
+
+.data-submit:hover {
+    background-color:red;
+}
