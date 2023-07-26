@@ -1,4 +1,4 @@
 Technologies Used 
 - Electron 
-- React
+- Next.js
 - MongoDB

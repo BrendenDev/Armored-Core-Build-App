@@ -13,7 +13,8 @@
   "dependencies": {
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
-    "mongodb": "^5.7.0"
+    "mongodb": "^5.7.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "devDependencies": {
     "electron": "^21.3.3",
