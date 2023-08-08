@@ -35,5 +35,9 @@
 }
 
 .data-submit:hover {
+    cursor: pointer;
+}
+
+.data-submit:hover {
     background-color:red;
 }
