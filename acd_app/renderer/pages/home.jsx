@@ -16,14 +16,16 @@ function Home() {
         <title>Armored Core Data App</title>
       </Head>
       <div className={styles.body}>
+
         <div>
           <InputForm uploadedData={uploadedData} setUploadedData={setUploadedData} />
         </div>
-        <div>
 
-        </div>
+        <div>
           {uploadedData ? (<DataParser uploadedData={uploadedData} parsedData={parsedData} setParsedData={setParsedData}/>) : (<p>No Data Uploaded</p>)}
         </div>
+    
+      </div>
     </React.Fragment>
   );
 };

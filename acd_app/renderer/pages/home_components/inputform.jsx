@@ -7,7 +7,6 @@ export default function InputForm({ uploadedData, setUploadedData }) {
   
       if (fileInput.files.length > 0) {
         setUploadedData(fileInput.files[0]);
-        console.log(fileInput.files[0]);
         
       } else {
         console.log("Already uploaded files");
