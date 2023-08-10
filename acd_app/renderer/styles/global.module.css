@@ -58,5 +58,6 @@
 
 .data-table-data {
     border-left: 2px solid black;
-    border-right: 2px solid black;
+    text-align:center;
+    /*border-right: 2px solid black;*/
 }

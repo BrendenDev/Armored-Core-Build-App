@@ -13,9 +13,12 @@ export default function DataParser({ uploadedData, parsedData, setParsedData }) 
         const workbook = xlsx.read(buffer, {type:'array'});
 
         //sheet 1 = Unit | 2 = Frame | 3 = Inner | 4 = Expansion
-        const sheet = workbook.Sheets["Unit"];
+        const sheet1 = workbook.Sheets[workbook.SheetNames[0]];
+        const sheet2 = workbook.Sheets["Frame"];
+        const sheet3 = workbook.Sheets["Inner"];
+        const sheet4 = workbook.Sheets["Expansion"];
 
-        const data = xlsx.utils.sheet_to_json(sheet);
+        const data = xlsx.utils.sheet_to_json(sheet1);
 
         setParsedData(data);
 
