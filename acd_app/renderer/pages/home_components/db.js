@@ -1,6 +1,8 @@
 'use server'
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb+srv://ReadUser:${process.env.dbPassword}@acbuildsite.id5i3hu.mongodb.net/?retryWrites=true&w=majority`; //for production
+require('dotenv').config();
+//change to process.env.dbPassword when going live on server
+const uri = `mongodb+srv://WriteUser:${process.env.dbPassword}@acbuildsite.id5i3hu.mongodb.net/?retryWrites=true&w=majority`; //for production
 
 //two databases: 
 //one, the online that is retrieved only when recorded db version isn't matching most recent db version
@@ -54,24 +56,10 @@ async function loadData() { //here we can check for which database like "ACPreRe
 }
 
 
-
-export async function preloadData(recordedVersion) {
-  await connectDB(); 
-  const [updated, currentVersion] = await checkDBUpdated(recordedVersion); 
-  
-  //if version is up-to-date, return version. If it is not, preload data and return current version with preloaded data.
-  //no matter what, it'll still record the version
-  if(updated) {
-    console.log("everything up-to-date!");
-    client.close();
-    return [currentVersion, null]; 
-  }
-
-  else {
-    const data = await loadData();
-    return [currentVersion, data];
-  }
-  
+export async function dbInit() {
+  await connectDB();
+  const data = await client.db("ACDatabasePreRelease").collection("Version").find().sort({version: -1}).limit(1).toArray();
+  return data[0]['version'];
 }
 
     //console.log(await data.findOne({name: "VP-67LD"}));

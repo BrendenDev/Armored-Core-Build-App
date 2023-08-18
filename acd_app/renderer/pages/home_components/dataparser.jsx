@@ -14,38 +14,62 @@ export default function DataParser({ uploadedData, parsedData, setParsedData }) 
 
         //sheet 1 = Unit | 2 = Frame | 3 = Inner | 4 = Expansion
         const sheet1 = workbook.Sheets[workbook.SheetNames[0]];
-        const sheet2 = workbook.Sheets["Frame"];
-        const sheet3 = workbook.Sheets["Inner"];
-        const sheet4 = workbook.Sheets["Expansion"];
+        const sheet2 = workbook.Sheets[workbook.SheetNames[1]];
+        const sheet3 = workbook.Sheets[workbook.SheetNames[2]];
+        const sheet4 = workbook.Sheets[workbook.SheetNames[3]];
 
-        const data = xlsx.utils.sheet_to_json(sheet1);
+        const dataList = [];
+        dataList.push(xlsx.utils.sheet_to_json(sheet1));
+        dataList.push(xlsx.utils.sheet_to_json(sheet2));
+        dataList.push(xlsx.utils.sheet_to_json(sheet3));
+        dataList.push(xlsx.utils.sheet_to_json(sheet4));
 
-        setParsedData(data);
+        setParsedData(dataList);
 
+        const tables = [];
 
-        const rows = data.map(row => (
-            <tr>
-                {
-                    Object.keys(row).map(key => {
-                        return <td className={styles['data-table-data']}>{row[key]}</td>
-                    })
-                }
-            </tr>
-        ));
+        let i = 0;
 
+        for(const data of dataList) {
+            if(data[1]) {
+                const rows = data.map(row => (
+                    <tr>
+                        {
+                            Object.keys(row).map(key => {
+                                return <td className={styles['data-table-data']}>{row[key]}</td>
+                            })
+                        }
+                    </tr>
+                ));
 
-        const headers = 
-        <tr>
-            {
-            Object.keys(data[1]).map(key => {
-                return <th className={styles['data-table-header']}>{key}</th> 
-            })
-            }
-        </tr>
+                rows.shift();
         
-        const table = (<table className={styles['data-table']}>{headers}{rows}</table>);
+        
+                const headers = 
+                <tr>
+                    {
+                    Object.keys(data[0]).map(key => {
+                        return <th className={styles['data-table-header']}>{key}</th> 
+                    })
+                    }
+                </tr>
+                
+                tables.push(
+                    <>
+                        <h2 className={styles['data-table-title']}>{workbook.SheetNames[i]}</h2>
+                        <table className={styles['data-table']}>{headers}{rows}</table>
+                    </>
+                );
+            }
+            i++;
+            
 
-        setRenderedData(table);
+        }
+
+
+        
+
+        setRenderedData(tables);
     
     },[]);
 

@@ -11,6 +11,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "mongodb": "^5.7.0",

@@ -25,9 +25,6 @@ export default function InputForm({ uploadedData, setUploadedData }) {
         <div>
           {uploadedData ? (<p>{uploadedData['name']}</p>) : null}
         </div>
-        
-
-        <input type="submit" value="Submit Data" className={styles['data-submit']} />
       </form>
     )
     

@@ -48,8 +48,14 @@
     background-color:red;
 }
 
+.data-table-title {
+    text-align: center;
+}
+
 .data-table {
-    border: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .data-table-header {
@@ -58,6 +64,7 @@
 
 .data-table-data {
     border-left: 2px solid black;
+    border-right: 2px solid black;
     text-align:center;
     /*border-right: 2px solid black;*/
 }
