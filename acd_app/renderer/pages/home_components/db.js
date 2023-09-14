@@ -22,48 +22,42 @@ async function connectDB() {
   console.log("Pinged your deployment. You successfully connected to MongoDB!");
 }
 
-async function checkDBUpdated(version) {
-  const data = await client.db("ACDatabasePreRelease").collection("Version").find().sort({version: -1}).limit(1).toArray();
-  const currentVersion = data[0]['version'];
-
-  //if not version does not exist, return false
-  if(version === null) {
-    console.log("no recorded db version, retrieving info")
-    return [false, currentVersion];
-  }
-
-  //if there is version and it is up-to-date return true and the current version. If not,  return false, and the current version.
-  const recordedVersion = parseFloat(version);
-
-  if(recordedVersion !== currentVersion) {
-    console.log("db versions do not match, updating info");
-    return [false, currentVersion];
-  }
-  else {
-    console.log("db versions do match");
-    return [true, currentVersion];
-  }
-}
-
-async function loadData() { //here we can check for which database like "ACPreRelease" or "ACv1.0.0"
-  const unitData = await client.db("ACDatabasePreRelease").collection("ACUnitSpecs").find().toArray();
-  const frameData = await client.db("ACDatabasePreRelease").collection("ACFrameSpecs").find().toArray();
-  const innerData = await client.db("ACDatabasePreRelease").collection("ACInnerSpecs").find().toArray();
-  const expansionData = await client.db("ACDatabasePreRelease").collection("ACExpansionSpecs").find().toArray();
+export async function loadExistingDBData() { //here we can check for which database like "ACPreRelease" or "ACv1.0.0"
+  const unitData = await client.db("ACDatabase1").collection("ACUnitSpecs").find().toArray();
+  const frameData = await client.db("ACDatabase1").collection("ACFrameSpecs").find().toArray();
+  const innerData = await client.db("ACDatabase1").collection("ACInnerSpecs").find().toArray();
+  const expansionData = await client.db("ACDatabase1").collection("ACExpansionSpecs").find().toArray();
 
   const data = [unitData, frameData, innerData, expansionData];
   return data;
 }
 
+export async function uploadUnitData(data) {
+  return await client.db("ACDatabase1").collection("ACUnitSpecs").insertMany(data);
+}
+export async function uploadFrameData(data) {
+  return await client.db("ACDatabase1").collection("ACFrameSpecs").insertMany(data);
+}
+export async function uploadInnerData(data) {
+  return await client.db("ACDatabase1").collection("ACInnerSpecs").insertMany(data);
+}
+export async function uploadExpansionData(data) {
+  return await client.db("ACDatabase1").collection("ACExpansionSpecs").insertMany(data);
+}
+export async function uploadVersionData(ver, com) {
+  const ver_com = {version: ver, comment: com};
+  return await client.db("ACDatabase1").collection("Version").insertOne(ver_com);
+}
+
 
 export async function dbInit() {
   await connectDB();
-  const data = await client.db("ACDatabasePreRelease").collection("Version").find().sort({version: -1}).limit(1).toArray();
+  const data = await client.db("ACDatabase1").collection("Version").find().sort({version: -1}).limit(1).toArray();
   return data[0]['version'];
 }
 
     //console.log(await data.findOne({name: "VP-67LD"}));
-/*const data = await client.db("ACDatabasePreRelease").collection(menuQuery);
+/*const data = await client.db("ACDatabase1").collection(menuQuery);
   const organizedData = await data.find(partQuery).toArray(function(err, documents) {
     if (err) {
       console.log(err);

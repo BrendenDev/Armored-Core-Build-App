@@ -5,6 +5,13 @@
     align-items: center;
 }
 
+.center-stuff {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .body > div {
     margin:10px;
 }
@@ -38,6 +45,14 @@
     margin-top: 10px;
     border: 5px solid #ccc;
     border-radius: 10px;
+    align-items:center;
+}
+
+.data-submitted {
+    margin-top: 10px;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    background-color:red;
 }
 
 .data-submit:hover {
@@ -56,6 +71,7 @@
     border-bottom: 2px solid black;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow-x: disabled;
 }
 
 .data-table-header {
@@ -67,4 +83,12 @@
     border-right: 2px solid black;
     text-align:center;
     /*border-right: 2px solid black;*/
+}
+
+.version-comment {
+    align-items:center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }

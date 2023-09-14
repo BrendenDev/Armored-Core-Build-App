@@ -31,12 +31,21 @@ export default function DataParser({ uploadedData, parsedData, setParsedData }) 
         let i = 0;
 
         for(const data of dataList) {
+            const headerList = Object.keys(data[0]).map(key => {
+                return key;
+            });
+
             if(data[1]) {
                 const rows = data.map(row => (
                     <tr>
                         {
-                            Object.keys(row).map(key => {
-                                return <td className={styles['data-table-data']}>{row[key]}</td>
+                            Object.keys(headerList).map((key) => {
+                                if(row[headerList[key]]) {
+                                    return <td className={styles['data-table-data']}>{row[headerList[key]]}</td>
+                                }
+                                else {
+                                    return <td className={styles['data-table-data']}></td>
+                                }
                             })
                         }
                     </tr>
